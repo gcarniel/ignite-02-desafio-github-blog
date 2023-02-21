@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 export const ProfileContainer = styled.div`
+  font-family: Nunito, sans-serif;
+
   background-color: ${(props) => props.theme.profile};
 
   display: flex;
@@ -40,6 +42,12 @@ export const Title = styled.header`
     font-size: 0.75rem;
 
     color: ${(props) => props.theme.blue};
+    border-bottom: 1px solid transparent;
+    transition: border 0.3s;
+  }
+
+  a:hover {
+    border-bottom: 1px solid ${(props) => props.theme.blue};
   }
 `
 
