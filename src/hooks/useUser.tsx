@@ -2,6 +2,6 @@ import { useContext } from 'react'
 import { BlogContext } from '../contexts/Blog'
 
 export function useUser() {
-  const props = useContext(BlogContext)
-  return { ...props }
+  const { user } = useContext(BlogContext)
+  return { user }
 }
