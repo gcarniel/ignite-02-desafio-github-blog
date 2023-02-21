@@ -6,16 +6,19 @@ import {
   faUserGroup,
 } from '@fortawesome/free-solid-svg-icons'
 import * as s from './styles'
+import { useUser } from '../../hooks/useUser'
 
 export function Profile() {
+  const { user } = useUser()
+
   return (
     <s.ProfileContainer>
-      <img src="https://github.com/gcarniel.png" alt="" />
+      <img src={user?.avatar_url} alt="" />
       <s.Bio>
         <s.Title>
-          <h1>Gabriel Carniel</h1>
+          <h1>{user?.name}</h1>
           <a
-            href="https://github.com/gcarniel"
+            href={user?.html_url}
             target={'_blank'}
             referrerPolicy="no-referrer"
           >
@@ -24,24 +27,19 @@ export function Profile() {
           </a>
         </s.Title>
         <s.Description>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis
-            accusamus voluptas, accusantium dolor debitis quisquam expedita ea
-            quaerat aperiam, itaque, eveniet exercitationem doloribus quam
-            repudiandae suscipit. Minima ea explicabo doloribus.
-          </p>
+          <p>{user?.bio}</p>
           <div>
             <span>
               <FontAwesomeIcon size="1x" icon={faGithub} />
-              gcarniel
+              {user?.login}
             </span>
             <span>
               <FontAwesomeIcon size="1x" icon={faBuilding} />
-              Empresa
+              {user?.company || user?.login}
             </span>
             <span>
               <FontAwesomeIcon size="1x" icon={faUserGroup} />
-              <span>2 Seguidores</span>
+              <span>{user?.followers} Seguidores</span>
             </span>
           </div>
         </s.Description>
