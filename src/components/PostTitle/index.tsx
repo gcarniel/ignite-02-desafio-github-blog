@@ -7,23 +7,26 @@ import {
   faComment,
 } from '@fortawesome/free-solid-svg-icons'
 import * as s from './styles'
+import { NavLink } from 'react-router-dom'
+import { useUser } from '../../hooks/useUser'
 
 export function PostTitle() {
+  const { user } = useUser()
   return (
     <s.PostTitleContainer>
       <s.Links>
-        <a href="/">
+        <NavLink to="/">
           <FontAwesomeIcon icon={faChevronLeft} />
           Voltar
-        </a>
-        <a
-          href="https://github.com/gcarniel"
+        </NavLink>
+        <NavLink
+          to={user?.html_url}
           target={'_blank'}
           referrerPolicy="no-referrer"
         >
           Ver no github
           <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-        </a>
+        </NavLink>
       </s.Links>
       <s.Title>
         <h1>JavaScript data types and data structures</h1>

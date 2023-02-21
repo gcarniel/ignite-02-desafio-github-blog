@@ -7,6 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import * as s from './styles'
 import { useUser } from '../../hooks/useUser'
+import { NavLink } from 'react-router-dom'
 
 export function Profile() {
   const { user } = useUser()
@@ -17,14 +18,14 @@ export function Profile() {
       <s.Bio>
         <s.Title>
           <h1>{user?.name}</h1>
-          <a
-            href={user?.html_url}
+          <NavLink
+            to={user?.html_url}
             target={'_blank'}
             referrerPolicy="no-referrer"
           >
             GITHUB
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-          </a>
+          </NavLink>
         </s.Title>
         <s.Description>
           <p>{user?.bio}</p>
