@@ -1,14 +1,14 @@
 import styled from 'styled-components'
 
-export const ProfileContainer = styled.div`
+export const PostTitleContainer = styled.div`
   font-family: Nunito, sans-serif;
 
   background-color: ${(props) => props.theme.profile};
 
   display: flex;
-  align-items: center;
+  flex-direction: column;
 
-  gap: 2rem;
+  gap: 1rem;
   padding: 2rem 2.5rem;
   border-radius: 10px;
   box-shadow: 0px 2px 28px rgba(0, 0, 0, 0.2);
@@ -19,19 +19,12 @@ export const ProfileContainer = styled.div`
   }
 `
 
-export const Bio = styled.div`
+export const Links = styled.div`
   display: flex;
-  flex-direction: column;
-`
 
-export const Title = styled.header`
-  display: flex;
   justify-content: space-between;
-  align-items: center;
 
-  h1 {
-    color: ${(props) => props.theme.title};
-  }
+  width: 100%;
 
   a {
     text-decoration: none;
@@ -44,6 +37,8 @@ export const Title = styled.header`
     color: ${(props) => props.theme.blue};
     border-bottom: 1px solid transparent;
     transition: border 0.3s;
+
+    text-transform: uppercase;
   }
 
   a:hover {
@@ -51,7 +46,17 @@ export const Title = styled.header`
   }
 `
 
-export const Description = styled.section`
+export const Title = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    color: ${(props) => props.theme.title};
+  }
+`
+
+export const Info = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1rem;
