@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form'
+import { Posts } from '../../components/Posts'
 import { Profile } from '../../components/Profile'
 import * as s from './styles'
 
@@ -26,6 +27,8 @@ export function PageHome() {
           />
         </form>
       </s.Content>
+
+      <Posts />
     </s.HomeContainer>
   )
 }
