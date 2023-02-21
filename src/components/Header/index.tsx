@@ -1,9 +1,10 @@
 import * as s from './styles'
 
+import logo from '../../assets/logo.svg'
 export function Header() {
   return (
     <s.HeaderContainer>
-      <h1>Header</h1>
+      <img src={logo} alt="" />
     </s.HeaderContainer>
   )
 }
