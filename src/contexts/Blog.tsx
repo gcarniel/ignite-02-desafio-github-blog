@@ -12,7 +12,7 @@ interface Posts {
 
 interface BlogContextType {
   user: any
-  fetchPost: (postNumber: number) => Promise<void>
+  fetchPost: (postNumber: string) => Promise<void>
   posts: Posts
 }
 
@@ -45,10 +45,12 @@ export function BlogProvider({ children }: BlogProps) {
     setPosts(response.data)
   }
 
-  const fetchPost = async (postNumber: number) => {
+  const fetchPost = async (postNumber: string) => {
     const response = await api.get(
       '/repos/gcarniel/ignite-03-desafio-github-blog/issues/' + postNumber,
     )
+    console.log('>>>>', response)
+    return response.data
   }
 
   useEffect(() => {

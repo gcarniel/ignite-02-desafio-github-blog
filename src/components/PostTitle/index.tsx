@@ -8,10 +8,15 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import * as s from './styles'
 import { NavLink } from 'react-router-dom'
-import { useUser } from '../../hooks/useUser'
 
-export function PostTitle() {
-  const { user } = useUser()
+interface PostTitleProps {
+  title: string
+  user: any
+  date: Date
+  comments: number
+}
+export function PostTitle({ title, user, date, comments }: PostTitleProps) {
+  console.log({ date })
   return (
     <s.PostTitleContainer>
       <s.Links>
@@ -29,21 +34,21 @@ export function PostTitle() {
         </NavLink>
       </s.Links>
       <s.Title>
-        <h1>JavaScript data types and data structures</h1>
+        <h1>{title}</h1>
       </s.Title>
       <s.Info>
         <div>
           <span>
             <FontAwesomeIcon size="1x" icon={faGithub} />
-            gcarniel
+            {user?.login}
           </span>
           <span>
             <FontAwesomeIcon size="1x" icon={faCalendarDay} />
-            Há 1 dia
+            {new Date(date).toISOString()}
           </span>
           <span>
             <FontAwesomeIcon size="1x" icon={faComment} />
-            <span>2 Comentários</span>
+            <span>{comments} Comentários</span>
           </span>
         </div>
       </s.Info>
