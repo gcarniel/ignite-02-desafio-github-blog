@@ -6,17 +6,26 @@ import {
   faCalendarDay,
   faComment,
 } from '@fortawesome/free-solid-svg-icons'
-import * as s from './styles'
+
 import { NavLink } from 'react-router-dom'
+
+import * as s from './styles'
+import { formatDate } from '../../helpers/formatterDate'
 
 interface PostTitleProps {
   title: string
   user: any
   date: Date
   comments: number
+  link: string
 }
-export function PostTitle({ title, user, date, comments }: PostTitleProps) {
-  console.log({ date })
+export function PostTitle({
+  title,
+  user,
+  date,
+  comments,
+  link,
+}: PostTitleProps) {
   return (
     <s.PostTitleContainer>
       <s.Links>
@@ -24,11 +33,7 @@ export function PostTitle({ title, user, date, comments }: PostTitleProps) {
           <FontAwesomeIcon icon={faChevronLeft} />
           Voltar
         </NavLink>
-        <NavLink
-          to={user?.html_url}
-          target={'_blank'}
-          referrerPolicy="no-referrer"
-        >
+        <NavLink to={link} target={'_blank'} referrerPolicy="no-referrer">
           Ver no github
           <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
         </NavLink>
@@ -44,7 +49,7 @@ export function PostTitle({ title, user, date, comments }: PostTitleProps) {
           </span>
           <span>
             <FontAwesomeIcon size="1x" icon={faCalendarDay} />
-            {new Date(date).toISOString()}
+            {formatDate(date)}
           </span>
           <span>
             <FontAwesomeIcon size="1x" icon={faComment} />

@@ -11,9 +11,11 @@ export function PageHome() {
     formState: { errors, isSubmitting },
   } = useForm()
 
-  const { posts } = useBlog()
+  const { posts, fetchPosts } = useBlog()
 
-  const handleSubmitForm = () => {}
+  const handleSubmitForm = (data: any) => {
+    fetchPosts(data.search)
+  }
   return (
     <s.HomeContainer>
       <Profile />
@@ -30,7 +32,6 @@ export function PageHome() {
           />
         </form>
       </s.Content>
-
       <Posts />
     </s.HomeContainer>
   )

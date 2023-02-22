@@ -13,10 +13,16 @@ interface Posts {
 interface BlogContextType {
   user: any
   fetchPost: (postNumber: string) => Promise<void>
+  fetchPosts: (searchText?: string) => Promise<void>
   posts: Posts
 }
 
 export const BlogContext = createContext({} as BlogContextType)
+
+// const GITHUB_USER = 'rocketseat-education'
+// const GITHUB_REPO = 'reactjs-github-blog-challenge'
+const GITHUB_USER = 'gcarniel'
+const GITHUB_REPO = 'ignite-03-desafio-github-blog'
 
 export function BlogProvider({ children }: BlogProps) {
   const [user, setUser] = useState({})
@@ -26,30 +32,27 @@ export function BlogProvider({ children }: BlogProps) {
   })
 
   const fetchUser = async () => {
-    const response = await api.get('/users/gcarniel')
-    console.log(response)
+    const response = await api.get(`/users/${GITHUB_USER}`)
     setUser(response.data)
   }
 
   const fetchPosts = async (searchText?: string) => {
     const query = searchText
-      ? `${searchText}%20repo:gcarniel/ignite-03-desafio-github-blog`
-      : 'repo:gcarniel/ignite-03-desafio-github-blog'
+      ? `${searchText}repo:${GITHUB_USER}/${GITHUB_REPO}`
+      : `repo:${GITHUB_USER}/${GITHUB_REPO}`
     const response = await api.get('/search/issues', {
       params: {
         q: query,
       },
     })
 
-    console.log(response.data)
     setPosts(response.data)
   }
 
   const fetchPost = async (postNumber: string) => {
     const response = await api.get(
-      '/repos/gcarniel/ignite-03-desafio-github-blog/issues/' + postNumber,
+      `/repos/${GITHUB_USER}/${GITHUB_REPO}/issues/${postNumber}`,
     )
-    console.log('>>>>', response)
     return response.data
   }
 
@@ -62,6 +65,7 @@ export function BlogProvider({ children }: BlogProps) {
       value={{
         user,
         fetchPost,
+        fetchPosts,
         posts,
       }}
     >

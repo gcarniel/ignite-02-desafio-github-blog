@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import { useParams } from 'react-router-dom'
 import { PostTitle } from '../../components/PostTitle'
 import { useBlog } from '../../hooks/useBlog'
@@ -12,7 +13,6 @@ export function PagePost() {
   const getPost = async () => {
     if (!postNumber) return
     const data = await fetchPost(postNumber)
-    console.log(data)
     setPost(data)
   }
 
@@ -26,11 +26,18 @@ export function PagePost() {
         <PostTitle
           title={post.title}
           user={post.user}
-          date={post.updated_at}
+          date={post.created_at}
           comments={post.comments}
+          link={post.html_url}
         />
       )}
-      <s.PostBody>{post.title && <p>{post.body}</p>}</s.PostBody>
+      <s.PostBody>
+        {post.body && (
+          <p>
+            <ReactMarkdown>{post.body}</ReactMarkdown>
+          </p>
+        )}
+      </s.PostBody>
     </s.PostContainer>
   )
 }

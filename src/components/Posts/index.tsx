@@ -1,4 +1,5 @@
 import { Navigate, useNavigate } from 'react-router-dom'
+import { formatDate } from '../../helpers/formatterDate'
 import { useBlog } from '../../hooks/useBlog'
 import * as s from './styles'
 
@@ -27,7 +28,7 @@ export function Posts() {
           >
             <s.Header>
               <h1>{post.title}</h1>
-              <span>Há 1 dia</span>
+              <span>{formatDate(post.created_at)}</span>
             </s.Header>
             <p>{transformPostContent(post.body)}</p>
           </s.PostWrapper>
