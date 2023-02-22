@@ -54,7 +54,7 @@ const GITHUB_REPO = 'ignite-03-desafio-github-blog'
 Caso deseje usar o projeto ou até mesmo evoluí-lo, basta passar seu usuário do github e o repositório que será seu blog.
 
 
-- [Visite o projeto online]()
+- [Visite o projeto online](https://ignite-03-desafio-github-blog.vercel.app/)
 
 ## 🔖 Layout
 
